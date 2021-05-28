@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="user" method="upgrade" version="3.9">
+	<name>plg_user_phocacart</name>
+	<author>Jan Pavelka (www.phoca.cz)</author>
+	<creationDate>28/05/2021</creationDate>
+	<authorEmail></authorEmail>
+	<authorUrl>https://www.phoca.cz</authorUrl>
+	<copyright>Jan Pavelka</copyright>
+	<license>GNU/GPL</license>
+	<version>3.0.0</version>
+	<description>PLG_USER_PHOCACART_DESCRIPTION</description>
+	<projectName>PhocaCartUserPlugin</projectName>
+
+	<files>
+		<filename plugin="phocacart">phocacart.php</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_user_phocacart.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_user_phocacart.sys.ini</language>
+	</languages>
+
+	<administration>
+		<languages>
+			<language tag="en-GB">language/en-GB/en-GB.plg_user_phocacart.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.plg_user_phocacart.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+	
+<field name="user_billing_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_DESC" class="btn-group btn-group-yesno" default="1">
+	<option value="1">JYES</option>
+	<option value="0">JNO</option>
+</field>
+
+<field name="user_shipping_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_DESC" class="btn-group btn-group-yesno" default="0">
+	<option value="1">JYES</option>
+	<option value="0">JNO</option>
+</field>
+
+<field name="order_billing_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_ORDER_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_ORDER_DESC" class="btn-group btn-group-yesno" default="0">
+	<option value="1">JYES</option>
+	<option value="0">JNO</option>
+</field>
+
+<field name="order_shipping_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_ORDER_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_ORDER_DESC" class="btn-group btn-group-yesno" default="0">
+	<option value="1">JYES</option>
+	<option value="0">JNO</option>
+</field>
+				
+			</fieldset>
+		</fields>
+	</config>
+
+	<updateservers>
+		<server type="extension" name="PLG_USER_PHOCACART" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartUserPlugin/master/manifest.xml]]></server>
+	</updateservers>
+</extension>
