@@ -2,7 +2,7 @@
 
 
 
-![Phoca Cart User Plugin](https://github.com/PhocaCz/PhocaCartUserPlugin/blob/master/phocacart.png?raw=true)
+![Phoca Cart User Plugin](https://github.com/PhocaCz/PhocaCartUserPlugin/blob/main/phocacart.png?raw=true)
 
 # Phoca Cart User Plugin
 

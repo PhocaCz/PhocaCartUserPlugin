@@ -57,6 +57,6 @@
 	</config>
 
 	<updateservers>
-		<server type="extension" name="PLG_USER_PHOCACART" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartUserPlugin/master/manifest.xml]]></server>
+		<server type="extension" name="PLG_USER_PHOCACART" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartUserPlugin/main/manifest.xml]]></server>
 	</updateservers>
 </extension>
