@@ -12,6 +12,7 @@
 	<projectName>PhocaCartUserPlugin</projectName>
 
 	<files>
+		<filename plugin="phocacart">manifest.xml</filename>
 		<filename plugin="phocacart">phocacart.php</filename>
 	</files>
 
