@@ -2,17 +2,16 @@
 <extension type="plugin" group="user" method="upgrade" version="3.9">
 	<name>plg_user_phocacart</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>28/05/2021</creationDate>
+	<creationDate>22/09/2021</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>3.0.0</version>
+	<version>3.5.7</version>
 	<description>PLG_USER_PHOCACART_DESCRIPTION</description>
 	<projectName>PhocaCartUserPlugin</projectName>
 
 	<files>
-		<filename plugin="phocacart">manifest.xml</filename>
 		<filename plugin="phocacart">phocacart.php</filename>
 	</files>
 
