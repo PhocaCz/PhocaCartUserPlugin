@@ -2,12 +2,12 @@
 <extension type="plugin" group="user" method="upgrade" version="4.0">
 	<name>plg_user_phocacart</name>
 	<author>Jan Pavelka (www.phoca.cz)</author>
-	<creationDate>23/02/2022</creationDate>
+	<creationDate>21/10/2022</creationDate>
 	<authorEmail></authorEmail>
 	<authorUrl>https://www.phoca.cz</authorUrl>
 	<copyright>Jan Pavelka</copyright>
 	<license>GNU/GPL</license>
-	<version>4.0.0</version>
+	<version>4.1.0</version>
 	<description>PLG_USER_PHOCACART_DESCRIPTION</description>
 	<projectName>PhocaCartUserPlugin</projectName>
 
@@ -31,25 +31,25 @@
 		<fields name="params">
 			<fieldset name="basic">
 	
-<field name="user_billing_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_DESC" class="btn-group btn-group-yesno" default="1">
-	<option value="1">JYES</option>
-	<option value="0">JNO</option>
-</field>
+				<field name="user_billing_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_DESC" default="1" layout="joomla.form.field.radio.switcher" filter="options">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 
-<field name="user_shipping_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_DESC" class="btn-group btn-group-yesno" default="0">
-	<option value="1">JYES</option>
-	<option value="0">JNO</option>
-</field>
+				<field name="user_shipping_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_DESC" default="0" layout="joomla.form.field.radio.switcher" filter="options">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 
-<field name="order_billing_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_ORDER_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_ORDER_DESC" class="btn-group btn-group-yesno" default="0">
-	<option value="1">JYES</option>
-	<option value="0">JNO</option>
-</field>
+				<field name="order_billing_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_ORDER_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_BILLING_ADDRESS_EMAIL_ORDER_DESC" default="0" layout="joomla.form.field.radio.switcher" filter="options">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 
-<field name="order_shipping_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_ORDER_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_ORDER_DESC" class="btn-group btn-group-yesno" default="0">
-	<option value="1">JYES</option>
-	<option value="0">JNO</option>
-</field>
+				<field name="order_shipping_address" type="radio" label="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_ORDER_LABEL" description="PLG_USER_PHOCACART_FIELD_CHANGE_SHIPPING_ADDRESS_EMAIL_ORDER_DESC" default="0" layout="joomla.form.field.radio.switcher" filter="options">
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
 				
 			</fieldset>
 		</fields>

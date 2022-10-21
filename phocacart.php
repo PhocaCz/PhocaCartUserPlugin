@@ -11,91 +11,134 @@
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Mail\MailHelper;
+use Joomla\CMS\Plugin\CMSPlugin;
 
 defined('_JEXEC') or die;
 
-class PlgUserPhocacart extends JPlugin
+class PlgUserPhocacart extends CMSPlugin
 {
 
-	public function onUserAfterSave($user, $isnew, $success, $msg)
+  /**
+   * Helper function to load Phoca Cart classes
+   *
+   * @since 4.1.0
+   */
+  private function loadPhocaCart(): bool
+  {
+    \JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+    return require_once JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/autoloadPhoca.php';
+  }
+
+  /**
+   * changes user email address in Phoca Cart address book and/or in stored orders
+   *
+   * @param   int     $userId
+   * @param   string  $email
+   * @param   int     $addressType
+   * @param   bool    $changeInAddress
+   * @param   bool    $changeInOrders
+   *
+   *
+   * @since 4.1.0
+   */
+  private function updateUserEmail(int $userId, string $email, int $addressType, bool $changeInAddress, bool $changeInOrders): void
+  {
+    if (!$changeInAddress && !$changeInOrders) {
+      return;
+    }
+
+    $db = Factory::getDBO();
+
+    $query = ' SELECT id, email FROM #__phocacart_users AS a'
+      .' WHERE a.user_id = ' . $userId
+      .' AND a.type = ' . $addressType
+      .' LIMIT 1';
+
+    $db->setQuery($query);
+    $userPc = $db->loadObject();
+
+    if ($userPc->email && $userPc->email != $email) {
+      if ($changeInAddress) {
+        $userPc->email = $email;
+        $db->updateObject('#__phocacart_users', $userPc, 'id');
+      }
+        // Change emails in existing orders
+      if ($changeInOrders) {
+          $query = 'UPDATE #__phocacart_order_users SET'
+            . ' email = CASE WHEN coalesce(email, ' . $db->quote('') . ') = ' . $db->quote('') . ' THEN ' . $db->quote('') . ' ELSE ' . $db->quote($email) . ' END'
+            . ' WHERE user_address_id = ' . $userPc->id;
+          $db->setQuery($query);
+          $db->execute();
+      }
+    }
+  }
+
+  /**
+   * Assigns user to "activate on registration groups" set in customers groups
+   *
+   * @param   int  $userId
+   *
+   *
+   * @since 4.1.0
+   */
+  private function assignRegistrationGroups(int $userId): void
+  {
+    if (!$this->loadPhocaCart()) {
+      return;
+    }
+
+    $db = Factory::getDBO();
+
+    $query = $db->getQuery(true)
+      ->select($db->qn('id'))
+      ->from($db->qn('#__phocacart_groups'))
+      ->where($db->qn('activate_registration') . ' = 1 OR ' . $db->qn('id') . ' = 1');
+
+    $db->setQuery($query);
+    $groups = $db->loadColumn();
+    if ($groups)
+      PhocacartGroup::storeGroupsById((int)$userId, 1, $groups);
+  }
+
+  /**
+   * @param $user
+   * @param $isnew
+   * @param $success
+   * @param $msg
+   *
+   *
+   * @since 3.0.0
+   */
+  public function onUserAfterSave($user, $isnew, $success, $msg)
 	{
+    // If save wasn't successful, don't do anything
+    if (!$success) {
+      return;
+    }
 
-		$user_billing_address = $this->params->get('user_billing_address', 1);
-		$user_shipping_address = $this->params->get('user_shipping_address', 0);
-		$order_billing_address = $this->params->get('order_billing_address', 0);
-		$order_shipping_address = $this->params->get('order_shipping_address', 0);
+    // No user specified, do nothing
+    if (!isset($user['id']) || !(int)$user['id']) {
+      return;
+    }
 
+    // Change user email address
+		if (!$isnew && isset($user['email']) && MailHelper::isEmailAddress($user['email'])) {
+      // Billing address
+      $this->updateUserEmail(
+        $user['id'], $user['email'], 0,
+        !!$this->params->get('user_billing_address', 1), !!$this->params->get('order_billing_address', 0)
+      );
 
-
-
-		if (isset($user['id']) && (int)$user['id'] > 0 && isset($user['email'])) {
-
-			$db = Factory::getDBO();
-
-			// BILLING ADDRESS
-			$query = ' SELECT id, email FROM #__phocacart_users AS a'
-			    .' WHERE a.user_id = '.(int) $user['id']
-				.' AND a.type = 0'
-				.' LIMIT 1';
-
-			$db->setQuery($query);
-			$userPc = $db->loadAssoc();
-
-			if (isset($userPc['email']) && $userPc['email'] != '') {
-				if ($userPc['email'] != $user['email'] && MailHelper::isEmailAddress($user['email'])) {
-					// Change email in Phoca Cart User table
-					if ($user_billing_address == 1) {
-						$query = 'UPDATE #__phocacart_users SET'
-								. ' email = ' . $db->quote($user['email'])
-								. ' WHERE user_id = ' . (int) $user['id']
-								. ' AND type = 0';
-						$db->setQuery($query);
-						$db->execute();
-					}
-					// Change emails in existing orders
-					if ($order_billing_address == 1 && isset($userPc['id']) && (int)$userPc['id'] > 0) {
-						$query = 'UPDATE #__phocacart_order_users SET'
-                            . ' email = CASE WHEN email = \'\' OR email IS NULL THEN \'\' ELSE ' . $db->quote($user['email']) . ' END'
-                            . ' WHERE user_address_id = ' . (int) $userPc['id'];
-						$db->setQuery($query);
-						$db->execute();
-					}
-				}
-			}
-
-
-			$userPc = array();
-
-			// SHIPPING ADDRESS
-			$query = ' SELECT id, email FROM #__phocacart_users AS a'
-			    .' WHERE a.user_id = '.(int) $user['id']
-				.' AND a.type = 1'
-				.' LIMIT 1';
-
-			$db->setQuery($query);
-			$userPc = $db->loadAssoc();
-
-			if (isset($userPc['email']) && $userPc['email'] != '') {
-				if ($userPc['email'] != $user['email'] && MailHelper::isEmailAddress($user['email'])) {
-					// Change email in Phoca Cart User table
-					if ($user_shipping_address == 1) {
-						$query = 'UPDATE #__phocacart_users SET'
-								. ' email = ' . $db->quote($user['email'])
-								. ' WHERE user_id = ' . (int) $user['id']
-								. ' AND type = 1';
-						$db->setQuery($query);
-						$db->execute();
-					}
-					// Change emails in existing orders
-					if ($order_shipping_address == 1 && isset($userPc['id']) && (int)$userPc['id'] > 0) {
-						$query = 'UPDATE #__phocacart_order_users SET'
-							. ' email = CASE WHEN email = \'\' OR email IS NULL THEN \'\' ELSE ' . $db->quote($user['email']) . ' END'
-							. ' WHERE user_address_id = ' . (int) $userPc['id'];
-						$db->setQuery($query);
-						$db->execute();
-					}
-				}
-			}
+      // Shipping address
+      $this->updateUserEmail(
+        $user['id'], $user['email'], 1,
+        !!$this->params->get('user_shipping_address', 0), !!$this->params->get('order_shipping_address', 0)
+      );
 		}
+
+    // Assign user to customer groups based on settings
+    if ($isnew) {
+      $this->assignRegistrationGroups($user['id']);
+    }
 	}
 }
