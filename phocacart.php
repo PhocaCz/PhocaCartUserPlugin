@@ -19,6 +19,17 @@ class PlgUserPhocacart extends CMSPlugin
 {
 
   /**
+   * Helper function to load Phoca Cart classes
+   *
+   * @since 4.1.0
+   */
+  private function loadPhocaCart(): bool
+  {
+    \JLoader::registerPrefix('Phocacart', JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/phocacart');
+    return require_once JPATH_ADMINISTRATOR . '/components/com_phocacart/libraries/autoloadPhoca.php';
+  }
+
+  /**
    * changes user email address in Phoca Cart address book and/or in stored orders
    *
    * @param   int     $userId
@@ -63,6 +74,33 @@ class PlgUserPhocacart extends CMSPlugin
   }
 
   /**
+   * Assigns user to "activate on registration groups" set in customers groups
+   *
+   * @param   int  $userId
+   *
+   *
+   * @since 4.1.0
+   */
+  private function assignRegistrationGroups(int $userId): void
+  {
+    if (!$this->loadPhocaCart()) {
+      return;
+    }
+
+    $db = Factory::getDBO();
+
+    $query = $db->getQuery(true)
+      ->select($db->qn('id'))
+      ->from($db->qn('#__phocacart_groups'))
+      ->where($db->qn('activate_registration') . ' = 1 OR ' . $db->qn('id') . ' = 1');
+
+    $db->setQuery($query);
+    $groups = $db->loadColumn();
+    if ($groups)
+      PhocacartGroup::storeGroupsById((int)$userId, 1, $groups);
+  }
+
+  /**
    * @param $user
    * @param $isnew
    * @param $success
@@ -97,5 +135,10 @@ class PlgUserPhocacart extends CMSPlugin
         !!$this->params->get('user_shipping_address', 0), !!$this->params->get('order_shipping_address', 0)
       );
 		}
+
+    // Assign user to customer groups based on settings
+    if ($isnew) {
+      $this->assignRegistrationGroups($user['id']);
+    }
 	}
 }
