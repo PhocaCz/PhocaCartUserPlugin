@@ -56,11 +56,11 @@ Phoca Cart User Plugin - a Joomla! CMS plugin that allows changing (updating) th
 
 ## Version (Joomla! 3.x)
 
-3.5.7
+3.5.8
 
 ## Version (Joomla! 4.x)
 
-4.1.0
+4.0.7
 
 
 
