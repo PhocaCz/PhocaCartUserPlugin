@@ -2,19 +2,19 @@
 
 
 
-![Phoca Cart Currency System Plugin](https://github.com/PhocaCz/PhocaCartCurrencySystemPlugin/blob/main/phocacartcurrency.png?raw=true)
+![Phoca Cart User Plugin](https://github.com/PhocaCz/PhocaCartUserPlugin/blob/main/phocacart.png?raw=true)
 
-# Phoca Cart Currency System Plugin
+# Phoca Cart User Plugin
 
 
 
-Phoca Cart Currency System Plugin - option to set default currency based on website language.
+Phoca Cart User Plugin - a Joomla! CMS plugin that allows changing (updating) the email address of Phoca Cart Users table or Phoca Cart Orders table if the email address on the user's profile page changes (in frontend or administration).
 
 
 
 ## Project page
 
-[Phoca Cart Currency System Plugin](https://www.phoca.cz/phocacart)
+[Phoca Cart User Plugin](https://www.phoca.cz/phocacart)
 
 [Phoca Cart Info Page](https://www.phoca.cz/project/phocacart-joomla-ecommerce)
 
@@ -54,9 +54,13 @@ Phoca Cart Currency System Plugin - option to set default currency based on webs
 
 
 
+## Version (Joomla! 3.x)
+
+3.5.8
+
 ## Version (Joomla! 4.x)
 
-4.0.0
+4.0.7
 
 
 

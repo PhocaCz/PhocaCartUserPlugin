@@ -1,24 +1,43 @@
-<?xml version="1.0" ?>
 <updates>
 	<update>
-		<name><![CDATA[ Phoca Cart Currency System Plugin ]]></name>
-		<description><![CDATA[ Phoca Cart Currency System Plugin - option to set default currency based on website language. ]]></description>
-		<element>phocacartcurrency</element>
-		<folder>system</folder>
+		<name><![CDATA[ Phoca Cart User Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart User Plugin - a Joomla! CMS plugin that allows changing (updating) the email address of Phoca Cart Users table or Phoca Cart Orders table if the email address on the user's profile page changes (in frontend or administration). ]]></description>
+		<element>phocacart</element>
+		<folder>user</folder>
 		<type>plugin</type>
-		<version>4.0.0</version>
-		<infourl title="Phoca Cart Currency System Plugin 4.0.0">https://www.phoca.cz/</infourl>
+		<version>3.5.8</version>
+		<infourl title="Phoca Cart User Plugin 3.5.8">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartCurrencySystemPlugin/releases/download/4.0.0/plg_system_phocacartcurrency_v4.0.0.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/3.5.8/plg_user_phocacart_v3.5.8.zip</downloadurl>
 		</downloads>
-		<sha512>7a601a8d0dd27ac205618561f315cf1b35ed058ebcb246b2ceaa1aeba8bd1fcfa51c2ba9bfeecc0da945fa38e34eb06bbb832da64b6787f2db19feff8e6af859</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
 		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
 		<maintainerurl>https://www.phoca.cz/</maintainerurl>
 		<section>Updates</section>
-		<targetplatform name="joomla" version="4\.*"/>
+		<targetplatform name="joomla" version="3.([89]|10)"/>
+		<client>site</client>
+	</update>
+	<update>
+		<name><![CDATA[ Phoca Cart User Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart User Plugin - a Joomla! CMS plugin that allows changing (updating) the email address of Phoca Cart Users table or Phoca Cart Orders table if the email address on the user's profile page changes (in frontend or administration). ]]></description>
+		<element>phocacart</element>
+		<folder>user</folder>
+		<type>plugin</type>
+		<version>4.0.7</version>
+		<infourl title="Phoca Cart User Plugin 4.0.7">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/4.0.7/plg_user_phocacart_v4.0.7.zip</downloadurl>
+		</downloads>
+		<sha512>c33b940b601c09ea22cc5feb25885c303d48c6595e1d44679751843d102684210773f7c34ca63791aee151277cce6e1b8910dda1da55cfe9b581febd35cb23cb</sha512>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="4.[012]"/>
 		<client>site</client>
 	</update>
 </updates>
