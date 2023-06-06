@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" group="system" method="upgrade" version="4.0">
+	<name>plg_system_phocacartcurrency</name>
+	<author>Jan Pavelka (www.phoca.cz)</author>
+	<creationDate>06/06/2023</creationDate>
+	<authorEmail></authorEmail>
+	<authorUrl>https://www.phoca.cz</authorUrl>
+	<copyright>Jan Pavelka</copyright>
+	<license>GNU/GPL</license>
+	<version>4.0.0</version>
+	<description>PLG_SYSTEM_PHOCACARTCURRENCY_DESCRIPTION</description>
+	<projectName>PhocaCartCurrencySystemPlugin</projectName>
+
+	<files>
+		<folder>models</folder>
+		<filename plugin="phocacartcurrency">index.html</filename>
+		<filename plugin="phocacartcurrency">phocacartcurrency.php</filename>
+		<filename plugin="phocacartcurrency">manifest.xml</filename>
+	</files>
+
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.plg_system_phocacartcurrency.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.plg_system_phocacartcurrency.sys.ini</language>
+	</languages>
+
+	<administration>
+		<languages>
+			<language tag="en-GB">language/en-GB/en-GB.plg_system_phocacartcurrency.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.plg_system_phocacartcurrency.sys.ini</language>
+		</languages>
+	</administration>
+	
+	<config>
+		<fields name="params" addfieldpath="/plugins/system/phocacartcurrency/models/fields">
+
+			<fieldset name="main" label="PLG_SYSTEM_PHOCACARTCURRENCY_MAIN_OPTIONS">
+
+			</fieldset>
+
+			<fieldset name="language" label="PLG_SYSTEM_PHOCACARTCURRENCY_LANGUAGES_CURRENCIES_OPTIONS">
+
+				<field name="items" type="subform" label="PLG_SYSTEM_PHOCACARTCURRENCY_LANGUAGES_CURRENCIES_LABEL" description="PLG_SYSTEM_PHOCACARTCURRENCY_LANGUAGES_CURRENCIES_DESC" multiple="true" layout="joomla.form.field.subform.repeatable-table" formsource="plugins/system/phocacartcurrency/models/forms/item.xml"/>
+
+			</fieldset>
+
+		</fields>
+	</config>
+
+	<updateservers>
+		<server type="extension" name="PLG_SYSTEM_PHOCACARTCURRENCY" priority="1"><![CDATA[https://raw.githubusercontent.com/PhocaCz/PhocaCartCurrencySystemPlugin/main/manifest.xml]]></server>
+	</updateservers>
+</extension>
