@@ -114,12 +114,8 @@ class PlgUserPhocacart extends CMSPlugin
 	 * @throws Exception
 	 * @since 5.0.0
 	 */
-	private function loadUserForm(Form $form): Form
+	private function loadUserForm(Form $form): void
 	{
-		if ($form === null) {
-			$form = new Form('com_phocacart.user');
-		}
-
 		$fields = \PhocacartFormUser::getFormXml('', '', 0, 0, 1, 0, 'phocacart');
 		$xml    = new SimpleXMLElement($fields['xml']);
 		$form->load($xml);
@@ -134,10 +130,8 @@ class PlgUserPhocacart extends CMSPlugin
 			$form->removeField('name');
 		}
 
-		// TODO nefunguje
+		// Do not duplicate email field
 		$form->removeField('email', 'phocacart');
-
-		return $form;
 	}
 
 	/**
@@ -159,8 +153,11 @@ class PlgUserPhocacart extends CMSPlugin
 			return true;
 		}
 
-		if (is_object($data) && isset($data->phocacart) && is_object($data->phocacart)) {
-			$phocaCart = (array)$data->phocacart;
+		$input = Factory::getApplication()->getInput();
+		$inputData = $input->post->get('jform', [], 'array');
+
+		if (is_array($inputData) && isset($inputData['phocacart']) && is_array($inputData['phocacart'])) {
+			$phocaCart = $inputData['phocacart'];
 			if (!isset($data->name) || empty($data->name)) {
 				$userName = [];
 				if ($name = ArrayHelper::getValue($phocaCart, 'name_first', null, 'string')) {
@@ -176,11 +173,6 @@ class PlgUserPhocacart extends CMSPlugin
 					$userName[] = $name;
 				}
 				$data->name = implode(' ', $userName);
-			}
-
-			// Copy Joomla Email to Phoca Cart email
-			if (isset($data->email)) {
-				$data->phocacart->email = $data->email;
 			}
 		}
 
@@ -200,17 +192,12 @@ class PlgUserPhocacart extends CMSPlugin
 	 */
 	public function onContentPrepareForm(Form $form, $data)
 	{
+		$name = $form->getName();
 		if (
 			!$this->params->get('integration_registration')
 			|| !$this->loadPhocaCart()
+			|| !in_array($name, ['com_users.registration'])
 		) {
-			return true;
-		}
-
-		// Check we are manipulating a valid form.
-		$name = $form->getName();
-
-		if (!in_array($name, ['com_users.registration'])) {
 			return true;
 		}
 
@@ -275,6 +262,12 @@ class PlgUserPhocacart extends CMSPlugin
 		    $data = $user['phocacart'];
 		    $data['user_id'] = $userId;
 		    $data['type'] = 0;
+
+		    // Copy Joomla Email to Phoca Cart email
+		    if (isset($user['email1'])) {
+			    $data['email'] = $user['email1'];
+		    }
+
 			Table::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_phocacart/tables');
 		    $row = Table::getInstance('PhocacartUser', 'Table');
 		    if ($row->bind($data)) {
