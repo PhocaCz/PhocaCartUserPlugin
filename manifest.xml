@@ -26,12 +26,11 @@
 		<element>phocacart</element>
 		<folder>user</folder>
 		<type>plugin</type>
-		<version>4.0.9</version>
-		<infourl title="Phoca Cart User Plugin 4.0.9">https://www.phoca.cz/</infourl>
+		<version>4.0.11</version>
+		<infourl title="Phoca Cart User Plugin 4.0.11">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/4.0.9/plg_user_phocacart_v4.0.9.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/4.0.11/plg_user_phocacart_v4.0.11.zip</downloadurl>
 		</downloads>
-		<sha512>9333559ea15db799adb09a12a0e8c6144ce3b12be107e3d66a6c56a927f85361b58fec7981c8d11cb7988b5d755a48400a194bd9bc6e062a128fef1d39c55e0c</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
@@ -41,5 +40,25 @@
 		<targetplatform name="joomla" version="4\.*"/>
 		<client>site</client>
 	</update>
-
+	<update>
+		<name><![CDATA[ Phoca Cart User Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart User Plugin - a Joomla! CMS plugin that allows changing (updating) the email address of Phoca Cart Users table or Phoca Cart Orders table if the email address on the user's profile page changes (in frontend or administration). ]]></description>
+		<element>phocacart</element>
+		<folder>user</folder>
+		<type>plugin</type>
+		<version>5.1.1</version>
+		<infourl title="Phoca Cart User Plugin 5.1.1">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/5.1.1/plg_user_phocacart_v5.1.1.zip</downloadurl>
+		</downloads>
+		<sha512>a126c8dbd08b81c6a16e7c4390da13624d51c6b5933c0845acf5abcbb39e9b6b790a0a7a3687dd42d2dbb8ae12ab6f80999857bf8f93d7d6389748f50686aa9c</sha512>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="5\.*"/>
+		<client>site</client>
+	</update>
 </updates>
