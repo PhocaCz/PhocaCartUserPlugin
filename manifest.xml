@@ -26,10 +26,10 @@
 		<element>phocacart</element>
 		<folder>user</folder>
 		<type>plugin</type>
-		<version>4.0.9</version>
-		<infourl title="Phoca Cart User Plugin 4.0.9">https://www.phoca.cz/</infourl>
+		<version>4.0.12</version>
+		<infourl title="Phoca Cart User Plugin 4.0.12">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/4.0.9/plg_user_phocacart_v4.0.9.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/4.0.12/plg_user_phocacart_v4.0.12.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>
@@ -46,12 +46,11 @@
 		<element>phocacart</element>
 		<folder>user</folder>
 		<type>plugin</type>
-		<version>5.1.1</version>
-		<infourl title="Phoca Cart User Plugin 5.1.1">https://www.phoca.cz/</infourl>
+		<version>5.2.3</version>
+		<infourl title="Phoca Cart User Plugin 5.2.3">https://www.phoca.cz/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/5.1.1/plg_user_phocacart_v5.1.1.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/5.2.3/plg_user_phocacart_v5.2.3.zip</downloadurl>
 		</downloads>
-		<sha512>a126c8dbd08b81c6a16e7c4390da13624d51c6b5933c0845acf5abcbb39e9b6b790a0a7a3687dd42d2dbb8ae12ab6f80999857bf8f93d7d6389748f50686aa9c</sha512>
 		<tags>
 			<tag>stable</tag>
 		</tags>
@@ -59,6 +58,27 @@
 		<maintainerurl>https://www.phoca.cz/</maintainerurl>
 		<section>Updates</section>
 		<targetplatform name="joomla" version="5\.*"/>
+		<client>site</client>
+	</update>
+	<update>
+		<name><![CDATA[ Phoca Cart User Plugin ]]></name>
+		<description><![CDATA[ Phoca Cart User Plugin - a Joomla! CMS plugin that allows changing (updating) the email address of Phoca Cart Users table or Phoca Cart Orders table if the email address on the user's profile page changes (in frontend or administration). ]]></description>
+		<element>phocacart</element>
+		<folder>user</folder>
+		<type>plugin</type>
+		<version>6.1.3</version>
+		<infourl title="Phoca Cart User Plugin 6.1.3">https://www.phoca.cz/</infourl>
+		<downloads>
+			<downloadurl type="full" format="zip">https://github.com/PhocaCz/PhocaCartUserPlugin/releases/download/6.1.3/plg_user_phocacart_v6.1.3.zip</downloadurl>
+		</downloads>
+		<sha512>2b55e28f4ef5fd707beae829f9d70c6396e640f7ded013b547e77a9a0708ed58085c4b8eac9916ea2650b30a3ee586c6f06bf7a9829c696c9f7199d717439332</sha512>
+		<tags>
+			<tag>stable</tag>
+		</tags>
+		<maintainer><![CDATA[ Phoca.cz ]]></maintainer>
+		<maintainerurl>https://www.phoca.cz/</maintainerurl>
+		<section>Updates</section>
+		<targetplatform name="joomla" version="(5|6)\.*"/>
 		<client>site</client>
 	</update>
 </updates>

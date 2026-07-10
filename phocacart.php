@@ -18,6 +18,7 @@ defined('_JEXEC') or die;
 class PlgUserPhocacart extends CMSPlugin
 {
 
+    protected $autoloadLanguage = true;
   /**
    * Helper function to load Phoca Cart classes
    *
